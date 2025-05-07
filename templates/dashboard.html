@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Cars 365</title>
+    <style>
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #087cff;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        .menu a:hover {
+            background-color: #065fbd;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="{{ url_for('buy_used_cars') }}">Buy Used Car</a>
+        <a href="{{ url_for('sell_car') }}">Sell a Car</a>
+        <a href="{{ url_for('finance') }}">Car Financing Options</a>
+        <a href="{{ url_for('home') }}">Back to Home Page</a>
+
+    </div>
+</body>
+</html>

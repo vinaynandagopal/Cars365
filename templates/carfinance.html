@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Finance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+    .container {
+      display: flex;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      gap: 30px;
+    }
+    .calculator, .info {
+      flex: 1;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      background: #087cff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .result {
+      margin-top: 15px;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Car Finance</h2>
+  <div class="container">
+    <div class="calculator">
+      <h3>Loan Calculator</h3>
+      <input type="number" id="price" placeholder="Car Price" required>
+      <input type="number" id="downPayment" placeholder="Down Payment" required>
+      <input type="number" id="interestRate" placeholder="Interest Rate (%)" required>
+      <input type="number" id="tenure" placeholder="Loan Tenure (in months)" required>
+      <button onclick="calculateEMI()">Calculate EMI</button>
+      <div class="result">
+        <p><strong>Monthly EMI:</strong> ₹<span id="emi">--</span></p>
+        <p><strong>Total Payable:</strong> ₹<span id="total">--</span></p>
+        <p><strong>Interest Payable:</strong> ₹<span id="interest">--</span></p>
+      </div>
+      <button>Apply Now</button>
+    </div>
+    <div class="info">
+      <h3>Available Financing Partners</h3>
+      <ul>
+        <li>✔ HDFC</li>
+        <li>✔ SBI</li>
+        <li>✔ Bajaj Finserv</li>
+        <li>✔ KGM</li>
+      </ul>
+      <h3>Eligibility Criteria</h3>
+      <ul>
+        <li>Age: 21–60 years</li>
+        <li>Steady Income Source</li>
+        <li>Valid Employment</li>
+      </ul>
+      <h3>Required Documents</h3>
+      <ul>
+        <li>ID Proof</li>
+        <li>Income Proof</li>
+        <li>Address Proof</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function calculateEMI() {
+      const price = parseFloat(document.getElementById("price").value);
+      const down = parseFloat(document.getElementById("downPayment").value);
+      const rate = parseFloat(document.getElementById("interestRate").value) / 12 / 100;
+      const tenure = parseInt(document.getElementById("tenure").value);
+
+      const loanAmount = price - down;
+      const emi = (loanAmount * rate * Math.pow(1 + rate, tenure)) / (Math.pow(1 + rate, tenure) - 1);
+      const total = emi * tenure;
+      const interest = total - loanAmount;
+
+      document.getElementById("emi").innerText = emi ? emi.toFixed(2) : '--';
+      document.getElementById("total").innerText = total ? total.toFixed(2) : '--';
+      document.getElementById("interest").innerText = interest ? interest.toFixed(2) : '--';
+    }
+  </script>
+</body>
+</html>
